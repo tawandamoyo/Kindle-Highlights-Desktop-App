@@ -4,7 +4,8 @@ const {
   BrowserWindow,
   session,
   ipcMain,
-  Menu
+  Menu,
+  dialog
 } = require("electron");
 const {
   default: installExtension,
@@ -292,3 +293,22 @@ app.on("web-contents-created", (event, contents) => {
     };
   });
 });
+
+// utilities
+
+function uploadTextFile() {
+  const files = dialog.showOpenDialog(mainWindow, {
+    properties: ['openFile'],
+    filters: [
+      { name: 'Text Files', extensions: ['txt'] },
+      { name: 'Markdown Files', extensions: ['md', 'markdown'] }
+    ]
+  });
+  if (!files) { return }
+  
+  const textFile = files[0];
+  const clippings = fs.readFileSync(textFile);
+  console.log(clippings);
+}
+
+module.exports = uploadTextFile;
