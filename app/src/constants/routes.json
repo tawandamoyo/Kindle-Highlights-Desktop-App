@@ -1,5 +1,6 @@
 {
-  "WELCOME": "/",
+  "HOME": "/",
+  "WELCOME": "/welcome",
   "ABOUT": "/about",
   "MOTD": "/motd",
   "LOCALIZATION": "/localization",
