@@ -1,7 +1,7 @@
 const { app, BrowserWindow, dialog, ipcMain } = require('electron');
 const path = require('node:path');
 const fs = require('fs');
-const pathToBooks = path.join(process.cwd(), '/booksDesktop');
+const pathToBooks = path.join(process.cwd(), '/booksDesktop/');
 
 
 let mainWindow = null;
@@ -31,9 +31,8 @@ ipcMain.on('toMain', async () => {
     mainWindow.webContents.send('fromMain', data)
 });
 
-ipcMain.on('create-books', (event) => {
-    let books = event.sender;
-    console.log(books);
+ipcMain.on('create-books', (event, data) => {
+    let books = data;
     
     fs.mkdir(pathToBooks, { recursive: true }, (error) => {
         if (error) {

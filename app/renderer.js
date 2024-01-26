@@ -62,7 +62,7 @@ createBooksButton.addEventListener('click', () => {
             books[title].push(highlight)
         }
         else {
-            books[title = [highlight]]
+            books[title] = [highlight];
         }
     }
 
